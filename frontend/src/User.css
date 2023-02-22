@@ -1,0 +1,14 @@
+.User h3 {
+  color: red;
+  font-weight: 400;
+}
+
+.User--activated,
+.User button {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.User button {
+  padding: 0.5rem 0.75rem;
+}

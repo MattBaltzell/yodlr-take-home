@@ -1,4 +1,40 @@
 .App {
   text-align: left;
+  background-color: #f3f3f3;
+  min-height: 100vh;
+}
+.flex {
+  display: flex;
+  gap: 1rem;
 }
 
+.align-items-center {
+  align-items: center;
+}
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-baseline {
+  align-items: baseline;
+}
+.justify-content-baseline {
+  justify-content: baseline;
+}
+
+button {
+  border: none;
+  background-color: red;
+  color: #fff;
+  border-radius: 0.2rem;
+  transition: all 0.2s ease-in-out;
+  padding: 0.5rem 1rem;
+}
+
+button:hover {
+  background-color: rgb(221, 0, 0);
+}
+
+.btn-sm {
+  padding: 0.2rem 0.4rem;
+}
