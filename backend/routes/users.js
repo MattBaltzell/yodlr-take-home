@@ -8,14 +8,14 @@ var users = require('../init_data.json').data;
 var curId = _.size(users);
 
 /* GET users listing. */
-router.get('/', function(req, res) {
+router.get('/', function (req, res) {
   res.json(_.toArray(users));
 });
 
 /* Create a new user */
-router.post('/', function(req, res) {
+router.post('/', function (req, res) {
   var user = req.body;
-  user.id = curId++;
+  user.id = ++curId;
   if (!user.state) {
     user.state = 'pending';
   }
@@ -25,7 +25,7 @@ router.post('/', function(req, res) {
 });
 
 /* Get a specific user by id */
-router.get('/:id', function(req, res, next) {
+router.get('/:id', function (req, res, next) {
   var user = users[req.params.id];
   if (!user) {
     return next();
@@ -34,7 +34,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 /* Delete a user by id */
-router.delete('/:id', function(req, res) {
+router.delete('/:id', function (req, res) {
   var user = users[req.params.id];
   delete users[req.params.id];
   res.status(204);
@@ -43,7 +43,7 @@ router.delete('/:id', function(req, res) {
 });
 
 /* Update a user by id */
-router.put('/:id', function(req, res, next) {
+router.put('/:id', function (req, res, next) {
   var user = req.body;
   if (user.id != req.params.id) {
     return next(new Error('ID paramter does not match body'));
@@ -52,6 +52,5 @@ router.put('/:id', function(req, res, next) {
   log.info('Updating user', user);
   res.json(user);
 });
-
 
 module.exports = router;
