@@ -1,5 +1,36 @@
-.Form-input-group {
+.Form {
+  color: #fff;
+  margin-top: 3rem;
+}
+
+.Form h2 {
+  font-weight: 600;
+}
+
+.Form form {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.Form-input-group {
   align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+.Form label {
+  margin-bottom: 3px;
+}
+
+.Form input {
+  font-size: 1rem;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.Form button {
+  font-size: 1rem;
+  margin-top: 0.5rem;
 }

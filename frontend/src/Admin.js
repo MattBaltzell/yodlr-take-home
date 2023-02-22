@@ -1,25 +1,43 @@
-import React from "react";
-import User from "./User";
-import Card from "./Card";
-import "./Admin.css";
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import User from './User';
+import Card from './Card';
+import YodlrApi from './api';
+import './Admin.css';
 
-function Admin({ users }) {
+const Admin = ({ users, updateActiveCount, openModal }) => {
+  async function activate(id) {
+    const user = await YodlrApi.activateUser(id);
+    updateActiveCount();
+    return user;
+  }
+
+  const history = useHistory();
+  function handleCreateUser() {
+    history.push('/admin/add-user');
+  }
+
   return (
-    <main className="Admin">
+    <div className="Admin">
       <h1>Admin Dashboard</h1>
-      <div className="flex align-items-center">
-        <h2>Users</h2>
-        <button className="btn-sm">Create new user</button>
-      </div>
-      <div className="Admin--user-list">
-        {users.map(user => (
-          <Card key={user.id}>
-            <User user={user} />
-          </Card>
-        ))}
-      </div>
-    </main>
+
+      <Card>
+        <div className="Admin-section-title">
+          <h2>Users</h2>
+          <button onClick={handleCreateUser} className="btn-sm">
+            Create new user
+          </button>
+        </div>
+        <div className="Admin--user-list">
+          {users.map((user) => (
+            <Card key={user.id}>
+              <User user={user} activate={activate} />
+            </Card>
+          ))}
+        </div>
+      </Card>
+    </div>
   );
-}
+};
 
 export default Admin;

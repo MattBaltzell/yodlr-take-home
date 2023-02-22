@@ -1,0 +1,51 @@
+.Navbar {
+  background-color: #40454f;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  width: 100%;
+}
+
+.Navbar-logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.Navbar-content {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.Navbar a:not(:first-child) {
+  margin-left: 1rem;
+}
+
+.Navbar a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.Navbar a:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.Navbar a.active {
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+}
+
+.Navbar a.active::after {
+  background-color: #00e0a8;
+  bottom: -0.5rem;
+  content: '';
+  display: block;
+  height: 3px;
+  left: 0px;
+  position: absolute;
+  width: 100%;
+}

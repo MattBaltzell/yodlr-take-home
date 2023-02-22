@@ -1,6 +1,10 @@
 .User h3 {
-  color: red;
-  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+}
+
+.User p {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .User--activated,
