@@ -1,9 +1,9 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import User from './User';
-import Card from './Card';
-import YodlrApi from './api';
-import './Admin.css';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import User from "../User/User";
+import Card from "../Card/Card";
+import YodlrApi from "../../Api/api";
+import "./Admin.css";
 
 const Admin = ({ users, updateActiveCount, openModal }) => {
   async function activate(id) {
@@ -14,7 +14,7 @@ const Admin = ({ users, updateActiveCount, openModal }) => {
 
   const history = useHistory();
   function handleCreateUser() {
-    history.push('/admin/add-user');
+    history.push("/admin/add-user");
   }
 
   return (
@@ -29,7 +29,7 @@ const Admin = ({ users, updateActiveCount, openModal }) => {
           </button>
         </div>
         <div className="Admin--user-list">
-          {users.map((user) => (
+          {users.map(user => (
             <Card key={user.id}>
               <User user={user} activate={activate} />
             </Card>

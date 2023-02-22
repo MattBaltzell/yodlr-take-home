@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Route } from 'react-router-dom';
-import Navbar from './Navbar';
-import Admin from './Admin';
-import Modal from './Modal';
-import Home from './Home';
-import YodlrApi from './api';
-import SignupForm from './SignupForm';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { Route } from "react-router-dom";
+import Navbar from "./Components/Navigation/Navbar";
+import Admin from "./Components/Admin/Admin";
+import Modal from "./Components/Modal/Modal";
+import Home from "./Components/Home/Home";
+import YodlrApi from "./Api/api";
+import SignupForm from "./Components/Form/SignupForm";
+import "./App.css";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [activeCount, setActiveCount] = useState(
-    users.map((u) => u.state === 'active').length
+    users.map(u => u.state === "active").length
   );
 
   useEffect(() => {

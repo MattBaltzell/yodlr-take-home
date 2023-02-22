@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import Card from './Card';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import Card from "../Card/Card";
 
-import './Form.css';
+import "./Form.css";
 
 const INITIAL_STATE = {
-  firstName: '',
-  lastName: '',
-  email: '',
+  firstName: "",
+  lastName: "",
+  email: ""
 };
 const SignupForm = ({ add, title, route, closeModal }) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const history = useHistory();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     add(formData);
     setFormData(INITIAL_STATE);
