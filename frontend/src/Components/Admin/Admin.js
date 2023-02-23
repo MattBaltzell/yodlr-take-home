@@ -5,7 +5,7 @@ import Card from "../Card/Card";
 import YodlrApi from "../../Api/api";
 import "./Admin.css";
 
-const Admin = ({ users, updateActiveCount, openModal }) => {
+const Admin = ({ users, updateActiveCount, setModal }) => {
   async function activate(id) {
     const user = await YodlrApi.activateUser(id);
     updateActiveCount();
@@ -14,6 +14,7 @@ const Admin = ({ users, updateActiveCount, openModal }) => {
 
   const history = useHistory();
   function handleCreateUser() {
+    setModal(true);
     history.push("/admin/add-user");
   }
 

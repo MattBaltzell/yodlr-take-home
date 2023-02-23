@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   lastName: "",
   email: ""
 };
-const SignupForm = ({ add, title, route, closeModal }) => {
+const SignupForm = ({ add, title, route, setModal }) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
 
   const handleChange = e => {
@@ -21,8 +21,9 @@ const SignupForm = ({ add, title, route, closeModal }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    add(formData);
+    add(route === "/admin" ? { ...formData, state: "active" } : formData);
     setFormData(INITIAL_STATE);
+    setModal(false);
     history.push(route);
   };
 

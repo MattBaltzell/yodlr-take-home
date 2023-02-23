@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
-import Navbar from "./Components/Navigation/Navbar";
-import Admin from "./Components/Admin/Admin";
-import Modal from "./Components/Modal/Modal";
-import Home from "./Components/Home/Home";
+import Navbar from "./Components/Navigation-Routes/Navbar";
+import Routes from "./Components/Navigation-Routes/Routes";
 import YodlrApi from "./Api/api";
-import SignupForm from "./Components/Form/SignupForm";
+
 import "./App.css";
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [activeCount, setActiveCount] = useState(
     users.map(u => u.state === "active").length
   );
@@ -26,30 +24,35 @@ function App() {
   async function addUser(data) {
     const newUser = await YodlrApi.addUser(data);
     setUsers([...users, newUser]);
+    return newUser;
   }
+
+  useEffect(() => {
+    if (modalIsOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [modalIsOpen]);
 
   function updateActiveCount() {
     setActiveCount(activeCount + 1);
+  }
+
+  function setModal(bool) {
+    setModalIsOpen(bool);
   }
 
   return (
     <div className="App">
       <Navbar />
       <main className="App-content">
-        <Route path="/admin/add-user">
-          <Modal>
-            <SignupForm add={addUser} title="Create New User" route="/admin" />
-          </Modal>
-        </Route>
-        <Route path="/admin">
-          <Admin users={users} updateActiveCount={updateActiveCount} />
-        </Route>
-        <Route exact path="/signup">
-          <SignupForm add={addUser} route="/" title="Signup" />
-        </Route>
-        <Route exact path="/">
-          <Home />
-        </Route>
+        <Routes
+          addUser={addUser}
+          users={users}
+          updateActiveCount={updateActiveCount}
+          setModal={setModal}
+        />
       </main>
     </div>
   );

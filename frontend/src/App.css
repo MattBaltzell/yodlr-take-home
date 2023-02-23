@@ -45,3 +45,7 @@ a.btn:hover {
   font-size: 1.2rem;
   padding: 0.7rem 1.4rem;
 }
+
+.no-scroll {
+  overflow: hidden;
+}

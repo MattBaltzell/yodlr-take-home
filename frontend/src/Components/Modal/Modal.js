@@ -1,13 +1,14 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import './Modal.css';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import "./Modal.css";
 
-const Modal = ({ children }) => {
+const Modal = ({ children, setModal }) => {
   const history = useHistory();
 
   function closeModal(e) {
-    if (!e.target.classList.contains('Modal')) return;
-    history.push('/admin');
+    if (!e.target.classList.contains("Modal")) return;
+    setModal(false);
+    history.push("/admin");
   }
 
   return (
