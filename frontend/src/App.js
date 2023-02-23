@@ -7,6 +7,7 @@ import "./App.css";
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [activeCount, setActiveCount] = useState(
     users.map(u => u.state === "active").length
@@ -14,17 +15,25 @@ function App() {
 
   useEffect(() => {
     async function getUsers() {
-      const users = await YodlrApi.getAllUsers();
-      setUsers(users);
+      try {
+        const users = await YodlrApi.getAllUsers();
+        setUsers(users);
+      } catch (error) {
+        console.error(error);
+      }
     }
     getUsers();
   }, [activeCount]);
 
   // backend does not store users in a DB, so users only update in state
   async function addUser(data) {
-    const newUser = await YodlrApi.addUser(data);
-    setUsers([...users, newUser]);
-    return newUser;
+    try {
+      const newUser = await YodlrApi.addUser(data);
+      setUsers([...users, newUser]);
+      return newUser;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   useEffect(() => {
@@ -43,6 +52,14 @@ function App() {
     setModalIsOpen(bool);
   }
 
+  function addMessage(msg, status) {
+    setMessages([...messages, { text: msg, status: status }]);
+  }
+
+  function clearMessages() {
+    setMessages([]);
+  }
+
   return (
     <div className="App">
       <Navbar />
@@ -52,6 +69,9 @@ function App() {
           users={users}
           updateActiveCount={updateActiveCount}
           setModal={setModal}
+          addMessage={addMessage}
+          clearMessages={clearMessages}
+          messages={messages}
         />
       </main>
     </div>

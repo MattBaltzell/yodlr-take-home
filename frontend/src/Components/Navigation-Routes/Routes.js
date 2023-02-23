@@ -5,7 +5,15 @@ import Modal from "../Modal/Modal";
 import Home from "../Home/Home";
 import SignupForm from "../Form/SignupForm";
 
-const Routes = ({ addUser, users, updateActiveCount, setModal }) => {
+const Routes = ({
+  addUser,
+  users,
+  updateActiveCount,
+  setModal,
+  addMessage,
+  messages,
+  clearMessages
+}) => {
   return (
     <>
       <Route path="/admin/add-user">
@@ -15,6 +23,7 @@ const Routes = ({ addUser, users, updateActiveCount, setModal }) => {
             title="Create New User"
             route="/admin"
             setModal={setModal}
+            addMessage={addMessage}
           />
         </Modal>
       </Route>
@@ -31,10 +40,11 @@ const Routes = ({ addUser, users, updateActiveCount, setModal }) => {
           setModal={setModal}
           route="/"
           title="Signup"
+          addMessage={addMessage}
         />
       </Route>
       <Route exact path="/">
-        <Home />
+        <Home messages={messages} clearMessages={clearMessages} />
       </Route>
     </>
   );

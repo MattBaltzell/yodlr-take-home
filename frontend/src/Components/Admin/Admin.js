@@ -7,9 +7,13 @@ import "./Admin.css";
 
 const Admin = ({ users, updateActiveCount, setModal }) => {
   async function activate(id) {
-    const user = await YodlrApi.activateUser(id);
-    updateActiveCount();
-    return user;
+    try {
+      const user = await YodlrApi.activateUser(id);
+      updateActiveCount();
+      return user;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   const history = useHistory();

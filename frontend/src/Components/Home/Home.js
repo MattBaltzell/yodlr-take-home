@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 import "./Home.css";
 
-const Home = () => {
+const Home = ({ messages, clearMessages }) => {
+  useEffect(() => {
+    return () => {
+      clearMessages();
+    };
+  }, []);
+
   return (
     <div className="Home">
       <h1>Welcome to Yodlr</h1>
@@ -14,6 +21,13 @@ const Home = () => {
           Signup
         </Link>
       </div>
+      {messages.map(message => {
+        return (
+          <div key={uuid()} className={`message ${message.status}`}>
+            {message.text}
+          </div>
+        );
+      })}
     </div>
   );
 };

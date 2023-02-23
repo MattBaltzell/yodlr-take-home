@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   lastName: "",
   email: ""
 };
-const SignupForm = ({ add, title, route, setModal }) => {
+const SignupForm = ({ add, title, route, setModal, addMessage }) => {
   const [formData, setFormData] = useState(INITIAL_STATE);
 
   const handleChange = e => {
@@ -19,12 +19,23 @@ const SignupForm = ({ add, title, route, setModal }) => {
 
   const history = useHistory();
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    add(route === "/admin" ? { ...formData, state: "active" } : formData);
-    setFormData(INITIAL_STATE);
-    setModal(false);
-    history.push(route);
+    try {
+      const user = await add(
+        route === "/admin" ? { ...formData, state: "active" } : formData
+      );
+      addMessage(
+        `Successfully added user: ${user.firstName} ${user.lastName}`,
+        "success"
+      );
+      setFormData(INITIAL_STATE);
+      setModal(false);
+      history.push(route);
+    } catch (error) {
+      addMessage(`Something went wrong. Could not create user`, "error");
+      console.error(error);
+    }
   };
 
   return (

@@ -13,3 +13,18 @@
   gap: 1rem;
   justify-content: center;
 }
+
+.message {
+  display: flex;
+  padding: 2rem;
+  background-color: #ddd;
+  border-radius: 0.2rem;
+}
+
+.message.success {
+  background-color: #88ffe1;
+}
+
+.message .error {
+  background-color: rgb(255, 174, 168);
+}
