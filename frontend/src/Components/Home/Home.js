@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Home.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Home.css";
 
 const Home = () => {
   return (
@@ -10,7 +10,7 @@ const Home = () => {
         <Link className="btn btn-lg" to="/admin">
           Admin
         </Link>
-        <Link className="btn btn-lg" to="/admin">
+        <Link className="btn btn-lg" to="/signup">
           Signup
         </Link>
       </div>
